@@ -10,12 +10,18 @@ function getData(sampleID){
         var variableArr = resultArr[0];
         console.log(variableArr);
         var sampleValue = variableArr.sample_values;
-        console.log(sampleValue);
+        //console.log(sampleValue);
         var otuID = variableArr.otu_ids;
-        console.log(otuID);
+        //console.log(otuID);
         var otuLabel = variableArr.otu_labels;
-        console.log(otuLabel);
+        //console.log(otuLabel);
 
+        //get wfreqdata
+        var mData = data.metadata;
+        var resultFreq = mData.filter(freqObject => freqObject.id == sampleID);
+        var freqData = resultFreq[0];
+        console.log(freqData);
+        var wFreq = freqData.wfreq;
 
         //create bar chart
         var arrData = [{
@@ -49,6 +55,36 @@ function getData(sampleID){
         }];
 
         Plotly.newPlot("bubble", bubbleData, layout);
+
+        //create gauge chart
+        var gaugeData = [{
+            type: "indicator",
+            mode: "gauge+number+delta",
+            value: wFreq,
+            title: "Scrub per Week",
+            gauge: {
+                axis: { range: [0, 9], tickwidth: 1, tickcolor: "darkblue" },
+                bar: { color: "darkblue" },
+                bgcolor: "white",
+                borderwidth: 2,
+                bordercolor: "gray",
+                steps: [
+                  { range: [0, 5], color: "cyan" },
+                  { range: [5, 7], color: "lightblue"},
+                  { range: [7, 9], color: "royalblue" }
+                ],
+                
+            } 
+
+        }];
+        var gaugeLayout = {
+            title: "Belly Button Washing Frequency",
+            width: 500,
+            height: 400,
+            margin: { t: 25, r: 25, l: 25, b: 25 }
+        };
+
+        Plotly.newPlot("gauge",gaugeData, gaugeLayout)
     });
 
 };
