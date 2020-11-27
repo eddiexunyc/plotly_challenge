@@ -23,7 +23,10 @@ function getData(sampleID){
             y: otuID.slice(0,10).map(otuID => `OTU${otuID}`).reverse(),
             text: otuLabel.slice(0, 10).reverse(),
             type: "bar",
-            orientation: "h"
+            orientation: "h",
+            marker: {
+                color: 'rgba(58,200,225,.5)'
+            }
         }];
 
         var layout = {
@@ -41,12 +44,11 @@ function getData(sampleID){
             marker: {
                 size: sampleValue,
                 color: otuID,
-                colorScale: "Earth"
+                colorScale: "Jet"
             }
         }];
 
         Plotly.newPlot("bubble", bubbleData, layout);
-
     });
 
 };
@@ -76,8 +78,10 @@ function getDemoData(metaID){
 
         var metaDataset = d3.select("#sample-metadata");
 
-
-
+        metaDataset.html("");
+        Object.entries(varArr).forEach(([key, value]) =>{
+            metaDataset.append("h6").text(`${key}: ${value}`);
+        })
 
     });
 
@@ -109,5 +113,6 @@ d3.selectAll("#selDataset").on("change", optionChanged);
 //get new data and create new chart per new data
 function optionChanged(newSample){
     getData(newSample);
+    getDemoData(newSample);
 
 };
