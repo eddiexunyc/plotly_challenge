@@ -34,4 +34,12 @@ The dataset reveals that a small handful of microbial species (also called opera
 
 6. Update all of the plots any time that a new sample is selected.
 
-Additionally, you are welcome to create any layout that you would like for your dashboard. An example dashboard is shown below:
+Additionally, you are welcome to create any layout that you would like for your dashboard.
+
+## Advanced Challenge Assignment (Optional)
+
+The following task is advanced and therefore optional.
+
+* You will need to modify the example gauge code to account for values ranging from 0 through 9.
+
+* Update the chart whenever a new sample is selected.

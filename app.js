@@ -35,11 +35,12 @@ function getData(sampleID){
             }
         }];
 
-        var layout = {
-            title: "bar graph"
+        var barLayout = {
+            title: "Top 10 OTUs found",
+            font: { family: 'Raleway, sans-serif'}
         };
 
-        Plotly.newPlot("bar", arrData, layout);
+        Plotly.newPlot("bar", arrData, barLayout);
 
         //create bubble data
         var bubbleData =[{
@@ -54,7 +55,11 @@ function getData(sampleID){
             }
         }];
 
-        Plotly.newPlot("bubble", bubbleData, layout);
+        var bubbleLayout = {
+            title: "OTUs Sample Size"
+        };
+
+        Plotly.newPlot("bubble", bubbleData, bubbleLayout);
 
         //create gauge chart
         var gaugeData = [{
